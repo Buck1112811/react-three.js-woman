@@ -2,7 +2,7 @@ import {useRef} from "react";
 import { useFrame, useUpdate } from "react-three-fiber";
 import {useMidiAction} from './Midi'
 import { noise } from "./perlin";
-import * as THREE from 'three';
+// import * as THREE from 'three';
 
 function updateMesh(geometry,ex,elapsedMs){
   noise.seed((elapsedMs/10)%1);
@@ -24,15 +24,15 @@ function updateMesh(geometry,ex,elapsedMs){
     pos.needsUpdate = true;
 }
 const Terrain = () => {
-  const exx = useRef(1.1); 
+  // const exx = useRef(1.1); 
   const geo = useRef();
   const noiseGeo = useRef();
-  const secondMesh = useRef(new THREE.PlaneBufferGeometry(1000,5000,200,1000));
+  // const secondMesh = useRef(new THREE.PlaneBufferGeometry(1000,5000,200,1000));
 
   // useFrame(()=>{
   
   // })
-  const noise = useUpdate(({ geometry }) => {
+  void useUpdate(({ geometry }) => {
     updateMesh(geometry,1.3,40);
   });
   const mesh = useUpdate(({ geometry }) => {

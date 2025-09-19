@@ -7,8 +7,8 @@ title: Sci-fi Girl v.02 Walkcycle Test
 */
 
 import * as THREE from 'three'
-import React, { useRef, useState, useEffect } from 'react'
-import { useFrame, useThree } from 'react-three-fiber'
+import React, { useRef, useEffect } from 'react'
+import { useFrame } from 'react-three-fiber'
 import { useGLTF } from '@react-three/drei/useGLTF'
 import { useAnimations } from '@react-three/drei/useAnimations'
 import {useMidiAction} from './Midi'
@@ -19,10 +19,11 @@ export default function Model(props) {
   const group = useRef()
   const stars = useRef()
   const color = useRef(hslToHex((new Date()%360),100,50));
-  const { nodes, materials, animations } = useGLTF('assets/scifi/scene.gltf')
+  const baseUrl = process.env.PUBLIC_URL || ''
+  const { nodes, materials, animations } = useGLTF(`${baseUrl}/assets/scifi/scene.gltf`)
   const { actions } = useAnimations(animations, group)
   console.log(actions)
-  const {camera} = useThree();
+  // const {camera} = useThree();
   useEffect(()=>{
     Object.keys(materials).forEach(mat => {
       if(mat !== "cloth_mat")
@@ -193,4 +194,4 @@ export default function Model(props) {
 }
 
 
-useGLTF.preload('assets/scifi/scene.gltf')
+useGLTF.preload(`${process.env.PUBLIC_URL || ''}/assets/scifi/scene.gltf`)
